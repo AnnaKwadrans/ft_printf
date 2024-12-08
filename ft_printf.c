@@ -6,7 +6,7 @@
 /*   By: akwadran <akwadran@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 23:36:19 by akwadran          #+#    #+#             */
-/*   Updated: 2024/12/08 00:14:13 by akwadran         ###   ########.fr       */
+/*   Updated: 2024/12/08 01:48:38 by akwadran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,16 @@ int get_format(char format, va_list ap)
         count = ft_putchar(va_arg(ap, int));
     else if (format == 's')
         count = ft_putstr(va_arg(ap, char *));
-    else if (format == 'p')
-    {}
+    //else if (format == 'p')
+    //{}
     else if (format == 'd' || format == 'i')
         count = ft_putnbr(va_arg(ap, int));
     else if (format == 'u')
-    {}
-    else if (format == 'x')
-    {}
+        count = ft_putnbr_unsigned(va_arg(ap, unsigned int));
+    else if (format == 'x' || format == 'p')
+        count = ft_puthexa(va_arg(ap, unsigned int), "0123456780abcdef");
     else if (format == 'X')
-    {}
+        count = ft_puthexa(va_arg(ap, unsigned int), "0123456789ABCDEF");
     else if (format == '%')
         count = ft_putchar('%');
     return (count);
