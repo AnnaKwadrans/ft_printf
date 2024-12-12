@@ -6,7 +6,7 @@
 /*   By: akwadran <akwadran@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 22:42:02 by akwadran          #+#    #+#             */
-/*   Updated: 2024/12/08 09:18:24 by akwadran         ###   ########.fr       */
+/*   Updated: 2024/12/10 00:43:12 by akwadran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ int	ft_putchar(char c)
 
 int	ft_putstr(char *s)
 {
-	int len;
+    int len;
 
+    if (s == NULL)
+        return (ft_putstr("(null)"));
     len = 0;
     while (s[len])
 	{
@@ -34,60 +36,56 @@ int	ft_putstr(char *s)
     return (len);
 }
 
-int	ft_putnbr(int n)
+int ft_putnbr(int n)
 {
-    static int  count = 0;
-    int         aux;
+    int count;
 
+    count = 0;
     if (n == -2147483648)
         return (ft_putstr("-2147483648"));
     else if (n < 0)
     {
-        count = count + ft_putchar('-');
+        count += ft_putchar('-');
         n = -n;
     }
     if (n >= 10)
-	{
+    {
         ft_putnbr((n / 10));
-		count = count + ft_putchar(((n % 10) + '0'));
+        count += ft_putchar(((n % 10) + '0'));
     }
-	if (n < 10)
-		count = count + ft_putchar((n + '0'));
-    aux = count;
-    count = 0;
-    return (aux);
+    if (n < 10)
+		count += ft_putchar((n + '0'));
+    return (count);
 }
 
-int	ft_putnbr_unsigned(unsigned int n)
+int	ft_putnbr_unsigned(unsigned long long n)
 {
-    static int count = 0;
+    int count = 0;
 
     if (n >= 10)
 	{
         ft_putnbr_unsigned((n / 10));
-		count = count + ft_putchar(((n % 10) + '0'));
+		count += ft_putchar(((n % 10) + '0'));
     }
 	if (n < 10)
-		count = count + ft_putchar((n + '0'));
+		count += ft_putchar((n + '0'));
     return (count);
 }
 
-int ft_puthexa(unsigned long long int n, char *base)
+int ft_puthexa(unsigned long long n, char *base)
 {
-    static int      count = 0;
-    int             aux;
+    int      count;
 
+    count = 0;
     if (n >= 16)
     {
         ft_puthexa(n / 16, base);
-        count = count + ft_putchar((base[n % 16]));
+        count += ft_putchar((base[n % 16]));
     }
     if (n < 16)
     {
-        count = count + ft_putchar(base[n]);
-        aux = count;
-        count = 0;
-        return (aux);
+        count += ft_putchar(base[n]);
+        return (count);
     }
     return (count);
 }
