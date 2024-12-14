@@ -6,7 +6,7 @@
 #    By: akwadran <akwadran@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/08 00:32:58 by akwadran          #+#    #+#              #
-#    Updated: 2024/12/10 00:37:23 by akwadran         ###   ########.fr        #
+#    Updated: 2024/12/14 16:11:49 by akwadran         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 NAME = libftprintf.a
 
-SRC = ft_printf.c ft_printf_utils.c
+SRC = ft_printf.c ft_printf_format.c ft_printf_utils.c ft_printf_uns.c
 
 OBJ = $(SRC:.c=.o)
 
