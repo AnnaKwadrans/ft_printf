@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akwadran <akwadran@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: akwadran <akwadran@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 23:36:19 by akwadran          #+#    #+#             */
 /*   Updated: 2024/12/09 14:48:30 by akwadran         ###   ########.fr       */
@@ -13,64 +13,52 @@
 #include <stdarg.h>
 #include "ft_printf.h"
 
-/*
-
-va_start()  initializes ap
-va_arg()    ap can be passed to va_arg for each argument to be processed
-va_copy()   
-va_end      calling va_end signals that there are no further aguments and invalidates ap
-
-each call to va_start must be matched to va_end in the same function
-
-ap = arguments pointer
-
-*/
-int ft_printf(char const *str, ...)
+int	ft_printf(char const *str, ...)
 {
-    va_list ap;
-    int     i;
-    int     count;
+	va_list	ap;
+	int		i;
+	int		count;
 
-    va_start(ap, str);
-    i = 0;
-    count = 0;
-    while (str[i])
-    {
-        if (str[i] != '%')
-            count += ft_putchar(str[i++]);
-        else 
-        {
-            count += get_format(str[i + 1], ap);
-            i+=2;
-        }
-    }
-    va_end(ap);
-    return (count);
+	va_start(ap, str);
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (str[i] != '%')
+			count += ft_putchar(str[i++]);
+		else
+		{
+			count += get_format(str[i + 1], ap);
+			i += 2;
+		}
+	}
+	va_end(ap);
+	return (count);
 }
 
-int get_format(char format, va_list ap)
+int	get_format(char format, va_list ap)
 {
-    int count;
+	int	count;
 
-    count = 0;
-    if (format == 'c')
-        count = ft_putchar(va_arg(ap, int));
-    else if (format == 's')
-        count = ft_putstr(va_arg(ap, char *));
-    else if (format == 'p')
-    {
-        count = ft_putstr("0x");
-        count += ft_puthexa(va_arg(ap, unsigned long long), "0123456789abcdef");
-    }
-    else if (format == 'd' || format == 'i')
-        count = ft_putnbr(va_arg(ap, int));
-    else if (format == 'u')
-        count = ft_putnbr_unsigned(va_arg(ap, unsigned int));
-    else if (format == 'x')
-        count = ft_puthexa(va_arg(ap, unsigned long long), "0123456789abcdef");
-    else if (format == 'X')
-        count = ft_puthexa(va_arg(ap, unsigned long long), "0123456789ABCDEF");
-    else if (format == '%')
-        count = ft_putchar('%');
-    return (count);
+	count = 0;
+	if (format == 'c')
+		count = ft_putchar(va_arg(ap, int));
+	else if (format == 's')
+		count = ft_putstr(va_arg(ap, char *));
+	else if (format == 'p')
+	{
+		count = ft_putstr("0x");
+		count += ft_puthexa(va_arg(ap, unsigned long long), "0123456789abcdef");
+	}
+	else if (format == 'd' || format == 'i')
+		count = ft_putnbr(va_arg(ap, int));
+	else if (format == 'u')
+		count = ft_putnbr_unsigned(va_arg(ap, unsigned int));
+	else if (format == 'x')
+		count = ft_puthexa(va_arg(ap, unsigned long long), "0123456789abcdef");
+	else if (format == 'X')
+		count = ft_puthexa(va_arg(ap, unsigned long long), "0123456789ABCDEF");
+	else if (format == '%')
+		count = ft_putchar('%');
+	return (count);
 }

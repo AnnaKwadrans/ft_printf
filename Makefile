@@ -16,7 +16,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 NAME = libftprintf.a
 
-SRC = ft_printf.c ft_printf_format.c ft_printf_utils.c ft_printf_uns.c
+SRC = ft_printf.c ft_printf_utils.c ft_putnbr.c ft_putnbr_uns.c ft_puthexa.c
 
 OBJ = $(SRC:.c=.o)
 
