@@ -6,7 +6,7 @@
 /*   By: akwadran <akwadran@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:59:11 by akwadran          #+#    #+#             */
-/*   Updated: 2024/12/28 19:09:12 by akwadran         ###   ########.fr       */
+/*   Updated: 2024/12/28 20:32:11 by akwadran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ int	ft_puthexa(unsigned long long n, char *base)
 
 int	ft_pointer(void *ptr)
 {
-	int			count;
+	int					count;
 	unsigned long long	n;
-	
+
 	if (ptr == NULL)
 		return (ft_putstr("(nil)"));
 	n = (unsigned long long)ptr;
