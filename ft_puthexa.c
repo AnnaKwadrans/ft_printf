@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_puthexa.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akwadran <akwadran@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: akwadran <akwadran@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:59:11 by akwadran          #+#    #+#             */
-/*   Updated: 2024/12/21 14:59:19 by akwadran         ###   ########.fr       */
+/*   Updated: 2024/12/28 19:09:12 by akwadran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,22 @@ int	ft_puthexa(unsigned long long n, char *base)
 	int		count;
 	char	*n_str;
 
+	count = 0;
 	n_str = ft_itoa_hexa(n, base);
-	count = ft_putstr(n_str);
+	count += ft_putstr(n_str);
 	free(n_str);
+	return (count);
+}
+
+int	ft_pointer(void *ptr)
+{
+	int			count;
+	unsigned long long	n;
+	
+	if (ptr == NULL)
+		return (ft_putstr("(nil)"));
+	n = (unsigned long long)ptr;
+	count = ft_putstr("0x");
+	count += ft_puthexa(n, "0123456789abcdef");
 	return (count);
 }

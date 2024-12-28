@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akwadran <akwadran@student.42madrid.com>   +#+  +:+       +#+        */
+/*   By: akwadran <akwadran@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 23:36:19 by akwadran          #+#    #+#             */
-/*   Updated: 2024/12/09 14:48:30 by akwadran         ###   ########.fr       */
+/*   Updated: 2024/12/28 20:09:47 by akwadran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,15 @@ int	get_format(char format, va_list ap)
 	else if (format == 's')
 		count = ft_putstr(va_arg(ap, char *));
 	else if (format == 'p')
-	{
-		count = ft_putstr("0x");
-		count += ft_puthexa(va_arg(ap, unsigned long long), "0123456789abcdef");
-	}
+		count += ft_pointer(va_arg(ap, void *));
 	else if (format == 'd' || format == 'i')
 		count = ft_putnbr(va_arg(ap, int));
 	else if (format == 'u')
 		count = ft_putnbr_unsigned(va_arg(ap, unsigned int));
 	else if (format == 'x')
-		count = ft_puthexa(va_arg(ap, unsigned long long), "0123456789abcdef");
+		count = ft_puthexa(va_arg(ap, unsigned int), "0123456789abcdef");
 	else if (format == 'X')
-		count = ft_puthexa(va_arg(ap, unsigned long long), "0123456789ABCDEF");
+		count = ft_puthexa(va_arg(ap, unsigned int), "0123456789ABCDEF");
 	else if (format == '%')
 		count = ft_putchar('%');
 	return (count);
